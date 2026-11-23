@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عبدالله عجاج — Full-Stack Architect</title>
+  <meta name="description" content="عبدالله عجاج — Full-Stack Architect building modern cloud platforms & distributed systems on Cloudflare." />
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body class="bg-[#110616] text-white antialiased overflow-x-hidden selection:bg-[#9068D1]/40 selection:text-white">
+
+  <!-- HUD: Top Header -->
+  <header class="ui ui-top">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#4A356B] to-[#110616] border border-[rgba(144,104,209,0.5)] flex items-center justify-center font-bold text-sm text-[#9068D1] shadow-lg shadow-[#210D32]/80">
+        AA
+      </div>
+      <div>
+        <span class="font-bold text-sm text-white tracking-tight" id="hud-name">عبدالله عجاج</span>
+        <span class="block text-[10px] font-mono text-slate-300">Full-Stack Architect</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <span class="year font-mono text-xs text-[#9068D1] font-semibold border border-[rgba(144,104,209,0.3)] px-2.5 py-0.5 rounded-full bg-[#210D32]/50">
+        2026
+      </span>
+
+      <button id="lang-toggle-btn" class="px-3 py-1 rounded-full border border-[rgba(144,104,209,0.4)] bg-[#210D32]/70 hover:bg-[#4A356B]/60 text-xs font-semibold text-white transition-all cursor-pointer shadow-md">
+        <span id="lang-label">English</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HUD: Glowing Vertical Rail (Alaa Style) -->
+  <nav class="ui ui-rail" aria-label="Stages">
+    <div class="rail-track">
+      <div class="rail-fill" id="rail-fill"></div>
+      <button class="rail-step active" data-stage="0" style="top: 0%" title="البداية"></button>
+      <button class="rail-step" data-stage="1" style="top: 33.3%" title="نبذة"></button>
+      <button class="rail-step" data-stage="2" style="top: 66.6%" title="الأعمال"></button>
+      <button class="rail-step" data-stage="3" style="top: 100%" title="تواصل"></button>
+    </div>
+  </nav>
+
+  <!-- HUD: Scroll Hint -->
+  <div class="ui ui-hint" id="ui-hint">
+    <div class="mouse"></div>
+    <span id="hint-text">مرّر لتبدأ الرحلة</span>
+  </div>
+
+  <!-- HUD: Bottom Footer -->
+  <footer class="ui ui-bottom">
+    <div class="tracking-widest font-mono text-xs text-[#9068D1]">
+      <span>ABDULLAH AJAJ</span> · <span>PORTFOLIO</span>
+    </div>
+    <div class="font-mono text-xs flex items-center gap-1" dir="ltr">
+      <b class="text-white text-sm" id="scene-counter">01</b>
+      <span class="text-white/40">/</span>
+      <span class="text-white/60" id="scene-total">04</span>
+    </div>
+  </footer>
+
+  <!-- Pinned 3D Stage (Fixed in Viewport) -->
+  <div id="stage">
+    <!-- 3D Studio Canvas -->
+    <canvas id="gl" aria-label="3D Royal Canvas"></canvas>
+
+    <!-- Clean Overlays (One Active at a Time) -->
+    <div id="overlay">
+
+        <!-- Stage 0: Hero -->
+        <section class="ov active items-center justify-center text-center px-4" id="ov-hero">
+          <div class="max-w-2xl space-y-6">
+            <div>
+              <span class="luxury-pill text-xs font-bold text-white mb-4">
+                <span class="grad">Full-Stack Architect</span>
+              </span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight shadow-title" id="hero-title">
+              <span class="grad">عالم من الحلول والأنظمة السحابية</span>
+            </h1>
+            <p class="text-base sm:text-xl text-white/90 font-light max-w-xl mx-auto leading-relaxed shadow-title" id="hero-subtitle">
+              أهلاً بك، أنا <strong>عبدالله عجاج</strong>…<br>أصمم وأبني بنى تحتية سحابية متكاملة وأنظمة برمجية موزعة على حافة السحابة.
+            </p>
+            <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+              <a href="https://t.me/z622x" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#4A356B] to-[#210D32] border border-[rgba(144,104,209,0.5)] hover:border-[#9068D1] text-xs font-semibold text-white shadow-lg transition-all hover:scale-105">
+                Telegram: @z622x
+              </a>
+              <a href="https://www.linkedin.com/in/abdullah-ajaj-4607b4321/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#4A356B] to-[#210D32] border border-[rgba(144,104,209,0.5)] hover:border-[#9068D1] text-xs font-semibold text-white shadow-lg transition-all hover:scale-105">
+                LinkedIn Profile
+              </a>
+              <a href="https://x.com/sama_hoy" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#4A356B] to-[#210D32] border border-[rgba(144,104,209,0.5)] hover:border-[#9068D1] text-xs font-semibold text-white shadow-lg transition-all hover:scale-105">
+                @sama_hoy
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Stage 1: About Me -->
+        <section class="ov items-center justify-center px-4" id="ov-about">
+          <div class="luxury-card p-8 sm:p-12 max-w-xl space-y-5 text-center sm:text-start">
+            <span class="luxury-pill text-xs font-bold text-white">
+              <span class="grad" data-i18n="about_tag">نبذة عني</span>
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white shadow-title" data-i18n="about_title">أهلاً، أنا عبدالله</h2>
+            <p class="text-sm sm:text-base text-white/90 leading-loose font-light shadow-title" data-i18n="about_body">
+              أهتم بتحويل الرؤى والأفكار الطموحة إلى منصات سحابية رشيقة وموثوقة، وتصميم أنظمة رقمية متكاملة تمنح المشاريع أعلى معايير الاستقرار والسرعة وقابلية التوسع.
+            </p>
+          </div>
+        </section>
+
+        <!-- Stage 2: Projects (Alaa-Style Luxury Showcase Card with Live Screenshots) -->
+        <section class="ov flex-col items-center justify-center px-4" id="ov-projects">
+          <div class="w-full max-w-4xl space-y-5">
+            
+            <div class="text-center space-y-2">
+              <span class="luxury-pill text-xs font-bold text-white">
+                <span class="grad" data-i18n="proj_tag">الأعمال والمشاريع</span>
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white shadow-title" data-i18n="proj_title">مشاريع ومنصات قيد التشغيل</h2>
+            </div>
+
+            <!-- Project Selector Tabs -->
+            <div id="project-tabs" class="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-full bg-[#110616]/80 border border-[rgba(144,104,209,0.4)] backdrop-blur-md text-xs"></div>
+
+            <!-- Active Featured Project Card with Live Screenshot -->
+            <div id="active-project-card" class="luxury-card p-6 sm:p-8"></div>
+
+            <!-- Project Indicator Dots -->
+            <div id="project-dots" class="flex items-center justify-center gap-2.5 pt-1"></div>
+
+          </div>
+        </section>
+
+        <!-- Stage 3: Contact (Direct Channels Hub) -->
+        <section class="ov items-center justify-center px-4" id="ov-contact">
+          <div class="luxury-card p-8 sm:p-12 w-full max-w-xl space-y-6 text-center">
+            <div class="space-y-3">
+              <span class="luxury-pill text-xs font-bold text-white">
+                <span class="grad" data-i18n="contact_tag">المحطة الختامية</span>
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white shadow-title" data-i18n="contact_title">لنبنِ شيئاً استثنائياً معاً</h2>
+              <p class="text-sm sm:text-base text-white/80 font-light max-w-md mx-auto leading-relaxed" data-i18n="contact_body">
+                يسعدني دائماً التواصل حول المشاريع الجديدة، واستشارات المعمارية السحابية، والتعاون الإبداعي.
+              </p>
+            </div>
+
+            <!-- Direct Channels (Luxury Cards) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <a href="https://t.me/z622x" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-[#110616]/80 hover:bg-[#210D32]/90 border border-[rgba(144,104,209,0.35)] hover:border-[#9068D1] transition-all hover:scale-105 shadow-lg flex flex-col items-center justify-center gap-2.5">
+                <div class="w-10 h-10 rounded-full bg-[#9068D1]/20 border border-[rgba(144,104,209,0.4)] flex items-center justify-center text-[#9068D1] group-hover:scale-110 group-hover:bg-[#9068D1] group-hover:text-white transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.42-1.43-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.66-2.89 8.01-3.46 3.81-1.62 4.6-.9 4.67-.89.02 0 .1.01.14.05.04.04.06.11.05.16z"/></svg>
+                </div>
+                <div>
+                  <span class="block font-bold text-sm text-white">Telegram</span>
+                  <span class="text-xs text-[#9068D1] font-mono">@z622x</span>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/abdullah-ajaj-4607b4321/" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-[#110616]/80 hover:bg-[#210D32]/90 border border-[rgba(144,104,209,0.35)] hover:border-[#9068D1] transition-all hover:scale-105 shadow-lg flex flex-col items-center justify-center gap-2.5">
+                <div class="w-10 h-10 rounded-full bg-[#9068D1]/20 border border-[rgba(144,104,209,0.4)] flex items-center justify-center text-[#9068D1] group-hover:scale-110 group-hover:bg-[#9068D1] group-hover:text-white transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z"/></svg>
+                </div>
+                <div>
+                  <span class="block font-bold text-sm text-white">LinkedIn</span>
+                  <span class="text-xs text-[#9068D1] font-mono">Abdullah Ajaj</span>
+                </div>
+              </a>
+
+              <a href="https://x.com/sama_hoy" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-[#110616]/80 hover:bg-[#210D32]/90 border border-[rgba(144,104,209,0.35)] hover:border-[#9068D1] transition-all hover:scale-105 shadow-lg flex flex-col items-center justify-center gap-2.5">
+                <div class="w-10 h-10 rounded-full bg-[#9068D1]/20 border border-[rgba(144,104,209,0.4)] flex items-center justify-center text-[#9068D1] group-hover:scale-110 group-hover:bg-[#9068D1] group-hover:text-white transition-all">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </div>
+                <div>
+                  <span class="block font-bold text-sm text-white">X</span>
+                  <span class="text-xs text-[#9068D1] font-mono">@sama_hoy</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Direct Telegram CTA Button -->
+            <div class="pt-2">
+              <a href="https://t.me/z622x" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#9068D1] to-[#4A356B] hover:from-[#8862C6] hover:to-[#382654] font-bold text-xs sm:text-sm text-white shadow-xl shadow-[#9068D1]/30 hover:scale-105 transition-all">
+                <span data-i18n="cta_telegram">محادثة مباشرة عبر تليجرام</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Scroll Track (Provides 800vh document height) -->
+    <div id="track" aria-hidden="true"></div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
